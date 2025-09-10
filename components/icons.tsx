@@ -1172,3 +1172,17 @@ export const WarningIcon = ({ size = 16 }: { size?: number }) => {
     </svg>
   );
 };
+
+export function IconGoogle(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <title>Google</title>
+      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.85 3.18-1.73 4.1-1.02 1.02-2.3 1.84-4.27 1.84-5.14 0-9.3-4.16-9.3-9.3s4.16-9.3 9.3-9.3c2.82 0 4.84 1.09 6.24 2.44l-2.5 2.52c-.81-.76-1.84-1.22-3.74-1.22-3.12 0-5.65 2.62-5.65 5.75s2.53 5.75 5.65 5.75c3.55 0 4.96-2.62 5.2-3.92h-5.2z" />
+    </svg>
+  );
+}

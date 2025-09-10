@@ -82,3 +82,6 @@ export const register = async (
     return { status: 'failed' };
   }
 };
+export async function googleLogin() {
+  await signIn('google');
+}

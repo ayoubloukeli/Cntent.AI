@@ -1,15 +1,24 @@
 'use client';
 
+'use client';
+
+'use client';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect, useState } from 'react';
 import { toast } from '@/components/toast';
+import { useSession, signIn } from 'next-auth/react'; // Combined and corrected signIn
 
 import { AuthForm } from '@/components/auth-form';
 import { SubmitButton } from '@/components/submit-button';
+import { Button } from '@/components/ui/button';
+import { IconGoogle } from '@/components/icons';
+import { login as emailLoginAction } from '../actions'; // Cleaned up
 
-import { login, type LoginActionState } from '../actions';
-import { useSession } from 'next-auth/react';
+type State = {
+  status: 'idle' | 'in_progress' | 'success' | 'failed' | 'invalid_data';
+};
 
 export default function Page() {
   const router = useRouter();
@@ -17,12 +26,12 @@ export default function Page() {
   const [email, setEmail] = useState('');
   const [isSuccessful, setIsSuccessful] = useState(false);
 
-  const [state, formAction] = useActionState<LoginActionState, FormData>(
-    login,
-    {
-      status: 'idle',
-    },
-  );
+const [state, formAction] = useActionState<State, FormData>(
+  emailLoginAction,
+  {
+    status: 'idle',
+  },
+);
 
   const { update: updateSession } = useSession();
 
@@ -70,6 +79,14 @@ export default function Page() {
             </Link>
             {' for free.'}
           </p>
+                        <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => signIn('google')}
+          >
+            <IconGoogle className="mr-2" />
+            Login with Google
+          </Button>
         </AuthForm>
       </div>
     </div>
